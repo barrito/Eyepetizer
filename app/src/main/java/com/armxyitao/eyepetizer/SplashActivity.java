@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.armxyitao.eyepetizer.activity.MainActivity;
+import com.armxyitao.eyepetizer.activity.HomeActivity;
 import com.armxyitao.eyepetizer.util.ActivityUtil;
 
 public class SplashActivity extends Activity {
@@ -50,7 +50,7 @@ public class SplashActivity extends Activity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                ActivityUtil.startActivity(SplashActivity.this,MainActivity.class,true);
+                ActivityUtil.startActivity(SplashActivity.this,HomeActivity.class,true);
             }
 
             @Override
