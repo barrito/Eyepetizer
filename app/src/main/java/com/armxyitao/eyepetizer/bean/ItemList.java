@@ -38,6 +38,8 @@ public class ItemList {
         String playUrl;    //视频的播放网址
         long duration;      //视频的时长
 
+        private ItemLabel label;//标签
+
         @Override
         public String toString() {
             return "ItemData{" +
@@ -54,7 +56,16 @@ public class ItemList {
                     ", cover=" + cover +
                     ", playUrl='" + playUrl + '\'' +
                     ", duration=" + duration +
+                    ", label=" + label +
                     '}';
+        }
+
+        public ItemLabel getLabel() {
+            return label;
+        }
+
+        public void setLabel(ItemLabel label) {
+            this.label = label;
         }
 
         public String getDataType() {
@@ -161,6 +172,7 @@ public class ItemList {
             this.duration = duration;
         }
     }
+
     /**
      * 视频播放的质量
      */
@@ -172,7 +184,6 @@ public class ItemList {
         String name;//: "流畅",
         String type;//: "low",
         String url;
-
 
 
         @Override
@@ -283,9 +294,6 @@ public class ItemList {
         int videoNum;//: 4,
 
 
-
-
-
         @Override
         public String toString() {
             return "ItemAuthor{" +
@@ -341,13 +349,10 @@ public class ItemList {
     /**
      * type=video时 data数据内的cover
      */
-   public class ItemCover {
+    public class ItemCover {
         String feed;        //: "http://img.wdjimg.com/image/video/f58d66fe20cf45c6b383dedab0ce2b77_0_0.jpeg",
         String detail;      //: "http://img.wdjimg.com/image/video/f58d66fe20cf45c6b383dedab0ce2b77_0_0.jpeg",
         String blurred;     //: "http://img.wdjimg.com/image/video/309b80a2598732c68643d50044a2881c_0_0.jpeg"
-
-
-
 
 
         @Override
@@ -385,20 +390,6 @@ public class ItemList {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public String toString() {
         return "ItemList{" +
@@ -431,4 +422,25 @@ public class ItemList {
     public void setPlayInfo(List<PlayInfo> playInfo) {
         this.playInfo = playInfo;
     }
+
+
+    public class ItemLabel {
+        String text;
+
+        @Override
+        public String toString() {
+            return "ItemLabel{" +
+                    "text='" + text + '\'' +
+                    '}';
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+    }
+
 }

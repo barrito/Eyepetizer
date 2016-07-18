@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.HomeActivity"/>
+        <activity android:name=".activity.WebViewActivity"/>
     </application>
 
 </manifest>

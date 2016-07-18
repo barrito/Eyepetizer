@@ -6,5 +6,5 @@ package com.armxyitao.eyepetizer.network;
  * @desc ${TODD}
  */
 public interface IModelChangListener {
-    void onModelChanged(Object obj);
+    void onModelChanged(int action,Object obj);
 }

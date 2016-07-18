@@ -20,5 +20,4 @@ public class BaseFragment extends Fragment {
     public void handlerMessage(Message msg) {
         //空实现
     }
-
 }

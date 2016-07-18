@@ -1,10 +1,8 @@
 package com.armxyitao.eyepetizer.network;
 
-import android.util.Log;
-
 import com.armxyitao.eyepetizer.base.BaseProtocol;
 import com.armxyitao.eyepetizer.bean.HomeBean;
-import com.armxyitao.eyepetizer.util.HttpUtil;
+import com.armxyitao.eyepetizer.constants.NetRequestCons;
 import com.google.gson.Gson;
 
 /**
@@ -15,26 +13,23 @@ import com.google.gson.Gson;
 public class HomeProtocol extends BaseProtocol {
 
 
-    public void getDataFromNet(final String url) {
-        HttpUtil.doGet(url, new INetResponseListener() {
-            @Override
-            public void onSuccess(String responseString) {
-                Object o = parseJson(responseString);
-                Log.d("geduo",o.toString());
-                if (mListener != null) {
-                    mListener.onModelChanged(o);
-                }
-            }
-
-            @Override
-            public void onFailure(String error) {
-
-            }
-        });
+    public void getDataFromNet(int action, final String url) {
+        deGet(action, url);
     }
-
-    private Object parseJson(String responseString) {
+    @Override
+    public void parseJson(int action, String responseString) {
         Gson gson = new Gson();
-        return gson.fromJson(responseString, HomeBean.class);
+        switch (action) {
+            case NetRequestCons.GET_HOME_DATA:
+                mListener.onModelChanged(NetRequestCons.GET_HOME_DATA_RESULT,gson.fromJson(responseString, HomeBean.class));
+                break;
+            case NetRequestCons.GET_MORE_HOME_DATA:
+                mListener.onModelChanged(NetRequestCons.GET_MORE_HOME_DATA_RESULT,gson.fromJson(responseString, HomeBean.class));
+                break;
+        }
+    }
+    @Override
+    public void handleFailure(String error) {
+
     }
 }

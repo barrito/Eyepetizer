@@ -2,7 +2,7 @@ package com.armxyitao.eyepetizer.factory;
 
 import android.support.v4.app.Fragment;
 
-import com.armxyitao.eyepetizer.fragment.RecommendFragment;
+import com.armxyitao.eyepetizer.fragment.HomeFragment;
 
 /**
  * @author 熊亦涛
@@ -13,13 +13,13 @@ public class FragmentFactory {
     public static Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new RecommendFragment();
+                return new HomeFragment();
             case 1:
-                return new RecommendFragment();
+                return new HomeFragment();
             case 2:
-                return new RecommendFragment();
+                return new HomeFragment();
             case 3:
-                return new RecommendFragment();
+                return new HomeFragment();
         }
         return null;
     }
