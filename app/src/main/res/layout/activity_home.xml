@@ -7,7 +7,7 @@
     <!--android:background="#ffddbbbb"-->
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_home"
-        android:background="#3888"
+        android:background="#1333"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >

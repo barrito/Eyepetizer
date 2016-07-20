@@ -5,13 +5,14 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.armxyitao.eyepetizer.R;
 import com.armxyitao.eyepetizer.activity.HomeActivity;
-import com.armxyitao.eyepetizer.adapter.HomeRvAdapter;
+import com.armxyitao.eyepetizer.adapter.HomeRecyclerViewAdapter;
 import com.armxyitao.eyepetizer.base.BaseFragment;
 import com.armxyitao.eyepetizer.bean.HomeBean;
 import com.armxyitao.eyepetizer.bean.IssueList;
@@ -26,7 +27,9 @@ import com.armxyitao.eyepetizer.network.IModelChangListener;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 熊亦涛
@@ -42,10 +45,12 @@ public class HomeFragment extends BaseFragment implements IModelChangListener {
     private LinearLayoutManager mLayoutManager;
     private HomeProtocol mProtocol;
     private List<IssueList> mIssueLists = new ArrayList<>();//封装了title左边的date
-    private HomeRvAdapter mRecommendRvAdapter;
+    private HomeRecyclerViewAdapter mRecommendRvAdapter;
     private int mCount = 0;
     private boolean isLoading = false;
     private HomeActivity mActivity;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -86,12 +91,16 @@ public class HomeFragment extends BaseFragment implements IModelChangListener {
         //一个IssueList里面有两个itemList,真实的数据封装在itemList中
         List<IssueList> issueList = bean.getIssueList();
         mIssueLists.addAll(issueList);//封装了date
+        Map<Integer, IssueList> map = new LinkedHashMap<>();
         for (IssueList list : issueList) {
             List<ItemList> itemList = list.getItemList();//真实需要的数据
             mRealDatas.addAll(itemList);
+            map.put(mCount,list);//存放所欲数据count之和和list
+            Log.d("geduo"," mCount ="+mCount);
             mCount += list.getCount();
             mDataSizes.add(mCount);
         }
+        mRecommendRvAdapter.addDataMap(map);//更新map
         mRecommendRvAdapter.notifyDataSetChanged();
         isLoading = false;
     }
@@ -107,16 +116,21 @@ public class HomeFragment extends BaseFragment implements IModelChangListener {
         //一个IssueList里面有两个itemList,真实的数据封装在itemList中
         List<IssueList> issueList = bean.getIssueList();
         mIssueLists.addAll(issueList);//封装了date
+        //key为每个issueList的+=count,value为对应的issueList
+        Map<Integer, IssueList> map = new LinkedHashMap<>();
         for (IssueList list : issueList) {
             List<ItemList> itemList = list.getItemList();//真实需要的数据
             mRealDatas.addAll(itemList);
+            map.put(mCount,list);//第一个key=0,第二个key=第一个IssueList的count...
+            Log.d("geduo"," mCount ="+mCount);
             mCount += list.getCount();
             mDataSizes.add(mCount);
         }
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRv.setLayoutManager(mLayoutManager);
-        mRecommendRvAdapter = new HomeRvAdapter(getActivity(), mRealDatas);
+        mRecommendRvAdapter = new HomeRecyclerViewAdapter(getActivity(), mRealDatas);
         mRv.setAdapter(mRecommendRvAdapter);
+        mRecommendRvAdapter.addDataMap(map);
         mRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

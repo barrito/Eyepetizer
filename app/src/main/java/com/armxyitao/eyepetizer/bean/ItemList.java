@@ -1,5 +1,6 @@
 package com.armxyitao.eyepetizer.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @time 16/7/15  22:55
  * @desc ${TODD}
  */
-public class ItemList {
+public class ItemList implements Serializable {
     String type;        //每个item的类型 banner1,textHeader,video
     private ItemData data;
 
@@ -17,7 +18,7 @@ public class ItemList {
     //        raw: "http://www.wandoujia.com/eyepetizer/detail.html?vid=8084",
     //                forWeibo: "http://wandou.im/2juq48"
     //    }
-    public class ItemData {
+    public class ItemData implements Serializable {
         String dataType;    //数据类型      Banner/TextHeader/VideoBeanForClient
 
         String title;       //标题
@@ -39,6 +40,46 @@ public class ItemList {
         long duration;      //视频的时长
 
         private ItemLabel label;//标签
+        private ItemConsumption consumption;//回复 喜欢 评论
+        public class ItemConsumption implements Serializable{
+            private int collectionCount;
+            private int shareCount;
+            private int replyCount;
+
+            public int getCollectionCount() {
+                return collectionCount;
+            }
+
+            public void setCollectionCount(int collectionCount) {
+                this.collectionCount = collectionCount;
+            }
+
+            public int getShareCount() {
+                return shareCount;
+            }
+
+            public void setShareCount(int shareCount) {
+                this.shareCount = shareCount;
+            }
+
+            public int getReplyCount() {
+                return replyCount;
+            }
+
+            public void setReplyCount(int replyCount) {
+                this.replyCount = replyCount;
+            }
+
+            @Override
+            public String toString() {
+                return "ItemConsumption{" +
+                        "collectionCount=" + collectionCount +
+                        ", shareCount=" + shareCount +
+                        ", replyCount=" + replyCount +
+                        '}';
+            }
+        }
+
 
         @Override
         public String toString() {
@@ -57,7 +98,16 @@ public class ItemList {
                     ", playUrl='" + playUrl + '\'' +
                     ", duration=" + duration +
                     ", label=" + label +
+                    ", consumption=" + consumption +
                     '}';
+        }
+
+        public ItemConsumption getConsumption() {
+            return consumption;
+        }
+
+        public void setConsumption(ItemConsumption consumption) {
+            this.consumption = consumption;
         }
 
         public ItemLabel getLabel() {
@@ -178,7 +228,7 @@ public class ItemList {
      */
     List<PlayInfo> playInfo;
 
-    private class PlayInfo {
+    private class PlayInfo implements Serializable {
         int height;//: 360,
         int width;//: 640,
         String name;//: "流畅",
@@ -241,7 +291,7 @@ public class ItemList {
     /**
      * type=video时 data数据内的provider
      */
-    class ItemProvider {
+    class ItemProvider implements Serializable {
         String name;    //: "乐视",
         String alias;    //: "letv",
         String icon;    //: "http://img.wdjimg.com/mms/icon/v1/6/ca/784da0db524cf8e1448574a764dcdca6_256_256.png"
@@ -284,7 +334,7 @@ public class ItemList {
     /**
      * type=video时 data数据内的author
      */
-    class ItemAuthor {
+    class ItemAuthor implements Serializable {
         //        id: 198,
         String icon; //: "http://img.wdjimg.com/image/video/70716e90178d2ea35be9e550c26795f1_0_0.jpeg",
         String name; //: "VICE 中国",
@@ -349,7 +399,7 @@ public class ItemList {
     /**
      * type=video时 data数据内的cover
      */
-    public class ItemCover {
+    public class ItemCover implements Serializable {
         String feed;        //: "http://img.wdjimg.com/image/video/f58d66fe20cf45c6b383dedab0ce2b77_0_0.jpeg",
         String detail;      //: "http://img.wdjimg.com/image/video/f58d66fe20cf45c6b383dedab0ce2b77_0_0.jpeg",
         String blurred;     //: "http://img.wdjimg.com/image/video/309b80a2598732c68643d50044a2881c_0_0.jpeg"
@@ -424,7 +474,7 @@ public class ItemList {
     }
 
 
-    public class ItemLabel {
+    public class ItemLabel implements Serializable {
         String text;
 
         @Override

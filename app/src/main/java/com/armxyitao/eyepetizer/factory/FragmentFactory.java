@@ -1,7 +1,10 @@
 package com.armxyitao.eyepetizer.factory;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.armxyitao.eyepetizer.bean.ItemList;
+import com.armxyitao.eyepetizer.fragment.DetailFragment;
 import com.armxyitao.eyepetizer.fragment.HomeFragment;
 
 /**
@@ -22,5 +25,18 @@ public class FragmentFactory {
                 return new HomeFragment();
         }
         return null;
+    }
+
+    /**
+     * 详情Fragment
+     * @param itemList
+     * @return
+     */
+    public static Fragment createDetailFragment(ItemList itemList) {
+        DetailFragment detailFragment = new DetailFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("ItemList",itemList);
+        detailFragment.setArguments(args);
+        return detailFragment;
     }
 }

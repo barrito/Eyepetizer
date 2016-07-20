@@ -7,14 +7,14 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginTop="3dp"
+    android:layout_marginTop="10dp"
     android:orientation="vertical"
-    app:cardCornerRadius="5dp"
     app:elevation="10dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_content_bg"
         android:layout_width="match_parent"
+        android:clickable="true"
         android:layout_height="240dp"/>
 
     <RelativeLayout

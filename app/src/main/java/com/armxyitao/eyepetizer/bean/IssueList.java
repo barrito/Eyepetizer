@@ -1,5 +1,6 @@
 package com.armxyitao.eyepetizer.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @time 16/7/15  22:53
  * @desc ${TODD}
  */
-public class IssueList {
+public class IssueList implements Serializable{
 
     /**
      * releaseTime : 1468512000000

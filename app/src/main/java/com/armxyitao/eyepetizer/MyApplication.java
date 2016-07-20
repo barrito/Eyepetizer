@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Process;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.orhanobut.logger.LogLevel;
+import com.orhanobut.logger.Logger;
 
 /**
  * @author 熊亦涛
@@ -13,8 +15,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
  * @desc ${TODD}
  */
 public class MyApplication extends Application {
-    private static Context mContext ;
-    private static Handler mHandler ;
+    private static Context mContext;
+    private static Handler mHandler;
     private static int mMainThread;
 
     public static Context getContext() {
@@ -40,6 +42,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //配置Fresco
         Fresco.initialize(getApplicationContext());
         //全局Context
         mContext = getApplicationContext();
@@ -47,5 +50,16 @@ public class MyApplication extends Application {
         mHandler = new Handler();
         //主线程id
         mMainThread = Process.myTid();
+        //配置Logger
+        initLogger();
+    }
+
+    private void initLogger() {
+        Logger.init("geduo")                 // default PRETTYLOGGER or use just init()
+                .methodCount(3)                 // default 2
+                .hideThreadInfo()               // default shown
+                .logLevel(LogLevel.NONE)        // default LogLevel.FULL
+                .methodOffset(2)  ;              // default 0
+//                .logAdapter(new AppLogAdapter()); //default AndroidLogAdapter
     }
 }
