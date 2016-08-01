@@ -1,6 +1,7 @@
 package com.armxyitao.eyepetizer.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
@@ -14,7 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.armxyitao.eyepetizer.R;
+import com.armxyitao.eyepetizer.activity.PanoramaActivity;
 import com.armxyitao.eyepetizer.bean.ItemList;
+import com.armxyitao.eyepetizer.util.ActivityUtil;
 import com.armxyitao.eyepetizer.util.ScreenUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -135,6 +138,12 @@ public class FoundRecyclerViewAdapter extends
                 rectLayoutParams.topMargin = ScreenUtil.dip2px(3);
                 rectHolder.card.setLayoutParams(rectLayoutParams);
                 rectHolder.mIv.setImageURI(Uri.parse(mDatas.get(position + bannerCount - 1).getImage()));
+                rectHolder.mIv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ActivityUtil.startActivity(mContext,PanoramaActivity.class,false);
+                    }
+                });
                 break;
 
         }

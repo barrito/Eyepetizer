@@ -14,4 +14,10 @@ public class NetRequestCons {
 
     public static final int GET_FOUND_DATA = 5;
     public static final int GET_FOUND_DATA_RESULT = 6;
+
+    public static final int GET_PANORAMA_BY_TIME = 7;
+    public static final int GET_PANORAMA_BY_TIME_RESULT = 8;
+
+    public static final int GET_PANORAMA_BY_SHARE = 9;
+    public static final int GET_PANORAMA_BY_SHARE_RESULT = 10;
 }
