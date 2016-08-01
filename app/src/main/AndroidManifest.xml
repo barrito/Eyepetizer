@@ -25,6 +25,7 @@
         <activity android:name=".activity.WebViewActivity"/>
         <activity android:name=".activity.HomeDetailActivity"/>
         <activity android:name=".activity.VideoActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:screenOrientation="landscape"/>
+        <activity android:name=".activity.PanoramaActivity"/>
     </application>
 
 </manifest>

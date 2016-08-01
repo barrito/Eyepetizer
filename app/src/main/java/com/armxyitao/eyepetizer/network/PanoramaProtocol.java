@@ -1,12 +1,9 @@
 package com.armxyitao.eyepetizer.network;
 
 import com.armxyitao.eyepetizer.base.BaseProtocol;
-import com.armxyitao.eyepetizer.bean.ItemList;
+import com.armxyitao.eyepetizer.bean.PanoramaInfo;
 import com.armxyitao.eyepetizer.constants.NetRequestCons;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.List;
 
 /**
  * @author 熊亦涛
@@ -26,7 +23,12 @@ public class PanoramaProtocol extends BaseProtocol {
             case NetRequestCons.GET_PANORAMA_BY_TIME :
                 mListener.onModelChanged(NetRequestCons.GET_PANORAMA_BY_TIME_RESULT
                         ,gson.fromJson(responseString,
-                                new TypeToken<List<ItemList>>(){}.getType()));
+                                PanoramaInfo.class));
+                break;
+            case NetRequestCons.GET_PANORAMA_BY_SHARE :
+                mListener.onModelChanged(NetRequestCons.GET_PANORAMA_BY_SHARE_RESULT
+                        ,gson.fromJson(responseString,
+                                PanoramaInfo.class));
                 break;
         }
     }
