@@ -26,6 +26,15 @@ public class PanoramaAdapter extends RecyclerView.Adapter<PanoramaViewHolder> {
     private Context mContext;
     private LayoutInflater mInflater;
     private List<ItemList> mDatas;
+    private OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position,List<ItemList> mDatas);
+    }
 
     public PanoramaAdapter(Context context) {
         mContext = context.getApplicationContext();
@@ -40,7 +49,7 @@ public class PanoramaAdapter extends RecyclerView.Adapter<PanoramaViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(PanoramaViewHolder holder, int position) {
+    public void onBindViewHolder(PanoramaViewHolder holder, final int position) {
         ItemList.ItemData data = mDatas.get(position).getData();
         holder.tv_content_title.setText(data.getTitle());
 
@@ -50,11 +59,19 @@ public class PanoramaAdapter extends RecyclerView.Adapter<PanoramaViewHolder> {
         if (data.getLabel() != null) {
             holder.tv_label.setText(data.getLabel().getText());
         }
+        holder.iv_content_bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mListener!=null) {
+                    mListener.onItemClick(position,mDatas);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mDatas!=null?mDatas.size():0;
+        return mDatas != null ? mDatas.size() : 0;
     }
 
     public void addData(List<ItemList> data) {
@@ -70,7 +87,8 @@ public class PanoramaAdapter extends RecyclerView.Adapter<PanoramaViewHolder> {
         }
     }
 }
-class PanoramaViewHolder extends RecyclerView.ViewHolder{
+
+class PanoramaViewHolder extends RecyclerView.ViewHolder {
 
     SimpleDraweeView iv_content_bg;
     RelativeLayout tv_container;
@@ -78,9 +96,10 @@ class PanoramaViewHolder extends RecyclerView.ViewHolder{
     TextView tv_kind_and_duration;
     TextView tv_tip;
     TextView tv_label;
-
+    View itemView;
     public PanoramaViewHolder(View itemView) {
         super(itemView);
+        this.itemView = itemView.findViewById(R.id.card);
         iv_content_bg = (SimpleDraweeView) itemView.findViewById(R.id.iv_content_bg);
         tv_container = (RelativeLayout) itemView.findViewById(R.id.tv_container);
         tv_content_title = (TextView) itemView.findViewById(R.id.tv_content_title);

@@ -1,5 +1,6 @@
 package com.armxyitao.eyepetizer.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.armxyitao.eyepetizer.adapter.PanoramaAdapter;
 import com.armxyitao.eyepetizer.base.BaseActivity;
 import com.armxyitao.eyepetizer.bean.ItemList;
 import com.armxyitao.eyepetizer.bean.PanoramaInfo;
+import com.armxyitao.eyepetizer.constants.IntentValues;
 import com.armxyitao.eyepetizer.constants.NetCons;
 import com.armxyitao.eyepetizer.constants.NetRequestCons;
 import com.armxyitao.eyepetizer.network.PanoramaProtocol;
@@ -31,7 +33,7 @@ import butterknife.ButterKnife;
  * @desc ${TODD}
  */
 public class PanoramaActivity extends BaseActivity
-        implements View.OnClickListener {
+        implements View.OnClickListener, PanoramaAdapter.OnItemClickListener {
     @Bind(R.id.title_date)
     TextView mTitleDate;
     @Bind(R.id.tv_title)
@@ -90,6 +92,8 @@ public class PanoramaActivity extends BaseActivity
                 }
             }
         });
+        //item点击事件
+        mPanoramaAdapter.setOnItemClickListener(this);
     }
 
     /**
@@ -194,5 +198,17 @@ public class PanoramaActivity extends BaseActivity
                 mPanoramaAdapter.setData(mShareDatas);
                 break;
         }
+    }
+
+    /**
+     *
+     * @param position
+     * @param mDatas
+     */
+    @Override
+    public void onItemClick(int position, List<ItemList> mDatas) {
+        Intent intent = new Intent(getApplicationContext(),PanoramaDetailActivity.class);
+        intent.putExtra(IntentValues.PANORAMA_DATAS,(ArrayList)mDatas);
+        startActivity(intent);
     }
 }
