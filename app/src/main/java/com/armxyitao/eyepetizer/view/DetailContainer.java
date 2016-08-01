@@ -131,7 +131,15 @@ public class DetailContainer extends LinearLayout {
                     float xMove = event.getRawX();
                     int distance = (int) (xMove - xDown);
                     //如果往左移且当前是第一个viewpager||往右移且当前是最后一个viewpager就不拦截
-                    return !((distance < 0 && !goToNext) || distance >= 0 && goToNext);
+                    if(distance<0&&goToNext) {
+//                        Logger.d("最后一张 我要拦截");
+                        return true;
+                    }
+                    if(distance>0&&!goToNext) {
+//                        Logger.d("第一张 我要拦截");
+                        return true;
+                    }
+//                    Logger.d("我没有拦截");
 
                 case MotionEvent.ACTION_UP:
 
@@ -139,7 +147,14 @@ public class DetailContainer extends LinearLayout {
         }
         return false;
     }
-
+    /**
+     * 判断是否可以拉动
+     */
+    private void setIsAbleToPull() {
+        int currentItem = mViewPager.getCurrentItem();
+        goToNext = currentItem == mViewPager.getAdapter().getCount() - 1;
+        ableToPull = currentItem == 0 || currentItem == mViewPager.getAdapter().getCount() - 1;
+    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -268,14 +283,7 @@ public class DetailContainer extends LinearLayout {
 
     }
 
-    /**
-     * 判断是否可以拉动
-     */
-    private void setIsAbleToPull() {
-        int currentItem = mViewPager.getCurrentItem();
-        goToNext = currentItem == mViewPager.getAdapter().getCount() - 1;
-        ableToPull = currentItem == 0 || currentItem == mViewPager.getAdapter().getCount() - 1;
-    }
+
 
     public void setCurrentPosition(int currentPosition) {
         mCurrentPosition = currentPosition;
