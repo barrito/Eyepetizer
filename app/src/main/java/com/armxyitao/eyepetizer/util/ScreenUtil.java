@@ -14,7 +14,7 @@ public class ScreenUtil {
      *
      * @return
      */
-    public static int getScreenWidht() {
+    public static int getScreenWidth() {
         WindowManager wm = (WindowManager) Utils.getContext().getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getWidth();
     }

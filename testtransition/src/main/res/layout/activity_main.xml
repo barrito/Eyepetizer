@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.armxyitao.testtransition.MainActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:onClick="explode"
+        android:text="explode"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:onClick="slide"
+        android:text="slide"
+        />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:onClick="fade"
+        android:text="fade"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:onClick="share"
+        android:background="#ff0"
+        android:transitionName="share"
+        android:text="share"
+        />
+
+    <Button
+        android:id="@+id/fab_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:elevation="10dp"
+        android:transitionName="fab"
+        />
+
+</LinearLayout>

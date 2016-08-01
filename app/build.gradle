@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.armxyitao.eyepetizer"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -27,9 +27,11 @@ dependencies {
     compile 'com.github.devlight.navigationtabbar:navigationtabbar:1.2.3'
     compile files('libs/butterknife-7.0.1.jar')
     compile 'com.google.code.gson:gson:2.7'
-    compile 'com.facebook.fresco:fresco:0.9.0+'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.facebook.fresco:fresco:0.9.0+'
     compile 'com.android.support:cardview-v7:23.4.0'
     compile project(':PagerSlidingTabStrip-master')
     compile 'com.orhanobut:logger:1.15'
+    compile 'com.github.moduth:blockcanary-android:1.2.1'
+    compile 'com.github.leifzhang:IjkLib:0.0.1'
 }

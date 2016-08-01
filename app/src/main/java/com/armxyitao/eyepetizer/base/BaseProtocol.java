@@ -16,11 +16,15 @@ public abstract class BaseProtocol {
         mListener = listener;
     }
 
+    public void getDataFromNet(int action, final String url) {
+        deGet(action, url);
+    }
+
     public void deGet(final int action, String url) {
         HttpUtil.doGet(url, new INetResponseListener() {
             @Override
             public void onSuccess(String responseString) {
-              parseJson(action,responseString);
+              handleJson(action,responseString);
             }
 
             @Override
@@ -41,6 +45,6 @@ public abstract class BaseProtocol {
      * 请求成功的回调
      * @param responseString
      */
-    public abstract void parseJson(int action,String responseString);
+    public abstract void handleJson(int action, String responseString);
 
 }

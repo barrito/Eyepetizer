@@ -11,23 +11,19 @@ import com.google.gson.Gson;
  * @desc ${TODD}
  */
 public class HomeProtocol extends BaseProtocol {
-
-
-    public void getDataFromNet(int action, final String url) {
-        deGet(action, url);
-    }
     @Override
-    public void parseJson(int action, String responseString) {
+    public void handleJson(int action, String responseString) {
         Gson gson = new Gson();
         switch (action) {
             case NetRequestCons.GET_HOME_DATA:
-                mListener.onModelChanged(NetRequestCons.GET_HOME_DATA_RESULT,gson.fromJson(responseString, HomeBean.class));
+                mListener.onModelChanged(NetRequestCons.GET_HOME_DATA_RESULT, gson.fromJson(responseString, HomeBean.class));
                 break;
             case NetRequestCons.GET_MORE_HOME_DATA:
-                mListener.onModelChanged(NetRequestCons.GET_MORE_HOME_DATA_RESULT,gson.fromJson(responseString, HomeBean.class));
+                mListener.onModelChanged(NetRequestCons.GET_MORE_HOME_DATA_RESULT, gson.fromJson(responseString, HomeBean.class));
                 break;
         }
     }
+
     @Override
     public void handleFailure(String error) {
 

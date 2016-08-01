@@ -11,4 +11,7 @@ public class NetRequestCons {
 
     public static final  int GET_MORE_HOME_DATA=3;
     public static final  int GET_MORE_HOME_DATA_RESULT=4;
+
+    public static final int GET_FOUND_DATA = 5;
+    public static final int GET_FOUND_DATA_RESULT = 6;
 }

@@ -8,12 +8,23 @@
         android:id="@+id/iv_bottom"
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:background="#0000"
         android:layout_alignParentBottom="true"/>
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/iv_bottom"/>
+        android:layout_above="@id/iv_bottom"
+        android:transitionName="image"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_alignParentBottom="true"
+        android:background="#7f000000"/>
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:transitionName="image"-->
+    <!--android:background="#f00"-->
+    <!--android:layout_height="500dp"/>-->
 </RelativeLayout>

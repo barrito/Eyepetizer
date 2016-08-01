@@ -1,125 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<com.armxyitao.eyepetizer.view.DetailContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-
-
-    <HorizontalScrollView
-        android:id="@+id/indicator_bottom"
+    <include
+        android:id="@+id/left_load_more"
+        layout="@layout/view_load_more_pager"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent"
+        />
 
-    </HorizontalScrollView>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_height="270dp">
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/content_bg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <RelativeLayout
-            android:id="@+id/rl_content"
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:layout_marginLeft="20dp"
-            android:background="@android:color/transparent">
-
-            <com.armxyitao.eyepetizer.view.TypeTextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="60dp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"/>
-
-            <com.armxyitao.eyepetizer.view.TypeTextView
-                android:id="@+id/tv_category_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_title"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp"/>
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignBottom="@id/tv_category_duration"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/ic_action_open_detail_more"/>
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@id/tv_category_duration"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/darker_gray"/>
-
-            <com.armxyitao.eyepetizer.view.TypeTextView
-                android:id="@+id/tv_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/divider"
-                android:layout_marginBottom="20dp"
-                android:layout_marginEnd="20dp"
-                android:ellipsize="end"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
-
-                <com.armxyitao.eyepetizer.view.TypeTextView
-                    android:id="@+id/tv_like"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_action_favorites_without_padding"
-                    android:gravity="end"
-                    android:textColor="@android:color/white"/>
-
-                <com.armxyitao.eyepetizer.view.TypeTextView
-                    android:id="@+id/tv_share"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:drawableLeft="@drawable/ic_action_share_without_padding"
-                    android:gravity="end"
-                    android:textColor="@android:color/white"/>
-
-                <com.armxyitao.eyepetizer.view.TypeTextView
-                    android:id="@+id/tv_reply"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:drawableLeft="@drawable/ic_action_reply_nopadding"
-                    android:gravity="end"
-                    android:textColor="@android:color/white"/>
-
-                <com.armxyitao.eyepetizer.view.TypeTextView
-                    android:id="@+id/tv_offline"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:drawableLeft="@drawable/ic_action_offline_without_padding"
-                    android:gravity="end"
-                    android:textColor="@android:color/white"/>
-            </LinearLayout>
-        </RelativeLayout>
-    </FrameLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_detail"
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
-</RelativeLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+        <RelativeLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--tab 暂未实现-->
+            <com.astuetz.PagerSlidingTabStrip
+                android:id="@+id/indicator_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true">
+
+            </com.astuetz.PagerSlidingTabStrip>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:layout_alignParentBottom="true">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/content_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@android:color/transparent">
+
+                    <com.armxyitao.eyepetizer.view.PrintTextView
+                        android:id="@+id/tv_title"
+                        style="@style/PrintTextViewStyle"
+                        android:layout_marginEnd="60dp"
+                        android:layout_marginTop="20dp"
+                        android:lines="1"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        />
+
+                    <com.armxyitao.eyepetizer.view.PrintTextView
+                        android:id="@+id/tv_category_duration"
+                        style="@style/PrintTextViewStyle"
+                        android:layout_below="@id/tv_title"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignBottom="@id/tv_category_duration"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ic_action_open_detail_more"/>
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/tv_category_duration"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <com.armxyitao.eyepetizer.view.PrintTextView
+                        android:id="@+id/tv_content"
+                        style="@style/PrintTextViewStyle"
+                        android:layout_below="@id/divider"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:ellipsize="end"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true">
+
+                        <com.armxyitao.eyepetizer.view.PrintTextView
+                            android:id="@+id/tv_like"
+                            style="@style/PrintTextViewStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_action_favorites_without_padding"
+                            android:gravity="end"
+                            android:textColor="@android:color/white"
+                            />
+
+                        <com.armxyitao.eyepetizer.view.PrintTextView
+                            android:id="@+id/tv_share"
+                            style="@style/PrintTextViewStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:drawableLeft="@drawable/ic_action_share_without_padding"
+                            android:gravity="end"
+                            android:textColor="@android:color/white"
+                            />
+
+                        <com.armxyitao.eyepetizer.view.PrintTextView
+                            android:id="@+id/tv_reply"
+                            style="@style/PrintTextViewStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:drawableLeft="@drawable/ic_action_reply_nopadding"
+                            android:gravity="end"
+                            android:textColor="@android:color/white"
+                            />
+
+                        <com.armxyitao.eyepetizer.view.PrintTextView
+                            android:id="@+id/tv_offline"
+                            style="@style/PrintTextViewStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:drawableLeft="@drawable/ic_action_offline_without_padding"
+                            android:gravity="end"
+                            android:textColor="@android:color/white"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
+            </FrameLayout>
+        </RelativeLayout>
+
+
+        <!--<include-->
+        <!--android:id="@+id/left_refresh_time"-->
+        <!--layout="@layout/view_left_refresh"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_toStartOf="@id/content_container"-->
+        <!--/>-->
+
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/right_load_more"
+        layout="@layout/view_load_more_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/content_container"
+        />
+</com.armxyitao.eyepetizer.view.DetailContainer>

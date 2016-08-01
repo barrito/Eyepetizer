@@ -31,6 +31,7 @@ public class ItemList implements Serializable {
         String text;        //type为textHeader时显示的文本    "- Weekend Special -"
         String font;        //type为textHeader时的字体 "lobster",
 
+
         //type为video
         ItemProvider provider;  //提供者
         String category;    //分类

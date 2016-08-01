@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--详情页面滑到最左边时,如果当前已经是最新数据时显示的View-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:ems="1"
+            android:gravity="center"
+            android:maxLines="15"
+            android:text="距离更新还有 4 小时  50  分"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+</RelativeLayout>

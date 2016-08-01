@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">开眼</string>
+    <string name="app_name">Eyepelizer</string>
     <string name="app_introduce_english">Daily appelizers for your eyes. Bon eyepetit</string>
     <string name="app_introduce_chinese">每日精选视频推介,让你大开眼界</string>
     <string name="app_name_english">Eyepelizer</string>
+    <string name="share_image">the image shared</string>
+    <string name="all_corner_video">360° 全景视频</string>
 </resources>

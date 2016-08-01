@@ -1,5 +1,6 @@
 package com.armxyitao.eyepetizer.fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.armxyitao.eyepetizer.R;
+import com.armxyitao.eyepetizer.activity.VideoActivity;
 import com.armxyitao.eyepetizer.bean.ItemList;
+import com.armxyitao.eyepetizer.constants.IntentValues;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -25,21 +28,44 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mParent = inflater.inflate(R.layout.fragment_detail, null);
-        initView();
+        ItemList itemList = (ItemList) getArguments().getSerializable("ItemList");
+        initView(itemList);
         return mParent;
     }
 
-    private void initView() {
-        ItemList itemList = (ItemList) getArguments().getSerializable("ItemList");
-        SimpleDraweeView showIv = (SimpleDraweeView) mParent.findViewById(R.id.iv_show);
-        showIv.setImageURI(Uri.parse(itemList.getData().getCover().getDetail()));
-//        SimpleDraweeView bottomIv = (SimpleDraweeView) mParent.findViewById(R.id.iv_bottom);
-//        bottomIv.setImageURI(Uri.parse(itemList.getData().getCover().getBlurred()));
+    public void initView(final ItemList itemList) {
+        if (itemList != null && itemList.getData() != null) {
+            SimpleDraweeView showIv = (SimpleDraweeView) mParent.findViewById(R.id.iv_show);
+            showIv.setImageURI(Uri.parse(itemList.getData().getCover().getDetail()));
+            showIv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity().getApplicationContext(),VideoActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(IntentValues.VIDEO_PLAY_URL,itemList.getData().getPlayUrl());
+                    startActivity(intent);
+                }
+            });
+            SimpleDraweeView bottomIv = (SimpleDraweeView) mParent.findViewById(R.id.iv_bottom);
+            bottomIv.setImageURI(Uri.parse(itemList.getData().getCover().getBlurred()));
+        }
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        EventBus.getDefault().register(this);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
+    }
+
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void refreshUI(RefreshFragmentEvent event) {
+//        initView(event.itemList);
+//    }
+
 }

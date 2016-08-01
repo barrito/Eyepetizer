@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.armxyitao.eyepetizer.R;
@@ -37,7 +38,8 @@ public class HomeActivity extends AppCompatActivity {
     @Bind(R.id.title_date)
     TextView mTitleDate;
     @Bind(R.id.tab)
-    TabLayout mTab;
+    //    PagerSlidingTabStrip mTab;
+            TabLayout mTab;
     @Bind(R.id.fab)
     FloatingActionButton mFab;
     @Bind(R.id.tv_title)
@@ -49,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
@@ -60,13 +63,20 @@ public class HomeActivity extends AppCompatActivity {
         TypefaceUtil.setTypeface(mTitleDate);
         HomePagerAdapter homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(), this);
         mVpHome.setAdapter(homePagerAdapter);
-
+        //初始化tabLayout
         mTab.setupWithViewPager(mVpHome);
         mTab.setTabMode(TabLayout.MODE_FIXED);
         for (int i = 0; i < mTab.getTabCount(); i++) {
             TabLayout.Tab tab = mTab.getTabAt(i);
-            tab.setCustomView(homePagerAdapter.getTabView(i));
+            ViewGroup view = (ViewGroup) homePagerAdapter.getTabView(i);
+            if (i == 0) {
+                view.getChildAt(0).setSelected(true);
+            }
+            if (tab != null) {
+                tab.setCustomView(view);
+            }
         }
+
     }
 
     @Override
@@ -89,8 +99,10 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+
     /**
      * 显示或者隐藏title
+     *
      * @param isShow
      */
     private void doShowOrHide(boolean isShow) {
@@ -99,16 +111,15 @@ public class HomeActivity extends AppCompatActivity {
             isLocked = true;
             if (!isShow) {
                 ObjectAnimator oa1 = ObjectAnimator.ofFloat(mTitle, "translationY", 0, -mTitle.getHeight());
-                oa1.setDuration(500);
+                oa1.setDuration(200);
                 oa1.start();
 
                 ObjectAnimator oa2 = ObjectAnimator.ofFloat(mTab, "translationY", 0, mTab.getHeight());
-                oa2.setDuration(500);
+                oa2.setDuration(200);
                 oa2.start();
                 oa2.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
-
                     }
 
                     @Override
@@ -129,13 +140,12 @@ public class HomeActivity extends AppCompatActivity {
 
             } else {
                 ObjectAnimator oa1 = ObjectAnimator.ofFloat(mTitle, "translationY", -mTitle.getHeight(), 0);
-                oa1.setDuration(500);
+                oa1.setDuration(200);
                 oa1.start();
 
 
-
                 ObjectAnimator oa2 = ObjectAnimator.ofFloat(mTab, "translationY", mTab.getHeight(), 0);
-                oa2.setDuration(500);
+                oa2.setDuration(200);
                 oa2.start();
                 oa2.addListener(new Animator.AnimatorListener() {
                     @Override

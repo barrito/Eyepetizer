@@ -12,7 +12,7 @@
         android:name=".MyApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+        <activity android:name=".activity.SplashActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,6 +24,7 @@
         <activity android:name=".activity.HomeActivity"/>
         <activity android:name=".activity.WebViewActivity"/>
         <activity android:name=".activity.HomeDetailActivity"/>
+        <activity android:name=".activity.VideoActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

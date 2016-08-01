@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PrintTextView">
+        <attr name="audio_src" format="reference"/>
+    </declare-styleable>
+</resources>

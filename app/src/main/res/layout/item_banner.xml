@@ -6,9 +6,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     card_view:cardCornerRadius="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     card_view:cardElevation="10dp"
     >
 

@@ -1,1 +1,1 @@
-include ':app', ':testcoordinatorlayout', ':testtablayout', ':PagerSlidingTabStrip-master'
+include ':app', ':PagerSlidingTabStrip-master', ':testtransition', ':asynctaskdemo', ':quanjingdemo'

@@ -51,4 +51,9 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         img.setImageResource(imageResId[position]);
         return view;
     }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return tabTitles[position];
+    }
 }

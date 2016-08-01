@@ -5,19 +5,22 @@
     android:id="@+id/fl_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
     android:orientation="vertical"
     app:elevation="10dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_content_bg"
         android:layout_width="match_parent"
+        android:layout_height="240dp"
         android:clickable="true"
-        android:layout_height="240dp"/>
+        android:transitionName="image"/>
 
     <RelativeLayout
+        android:id="@+id/tv_container"
+        android:background="#4f000000"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
