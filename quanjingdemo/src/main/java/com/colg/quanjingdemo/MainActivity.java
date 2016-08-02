@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
 //                "http://media.qicdn.detu.com/pano881111469974310974748793/oper/panofile_preview_detunew.jpg");
 //        "http://v3.cztv.com/cztv/vod/2016/03/15/f71522061dc84e10bc012c5243585e0f/h264_1500k_mp4.mp4"
         panoplayerurl.SetVideoUrlImage("http://v3.cztv.com/cztv/vod/2016/03/15/f71522061dc84e10bc012c5243585e0f/h264_1500k_mp4.mp4","");
+//        panoplayerurl.SetVideoUrlImage("http://baobab.wandoujia.com/api/v1/playUrl?vid=8426&editionType=default","");
         mRenderer.Play(panoplayerurl);
+
     }
 
     @Override

@@ -27,7 +27,7 @@ public class PrintTextView extends TextView {
     private SoundPool mPool;
     private static final int PRINT_DELAY = 5;
     private int mPrintDelay = PRINT_DELAY;
-    private int mSoundId=-1;
+    private int mSoundId = -1;
     private int mAudioSrc;  //音频资源id
     final boolean[] isLoadComplete = {false};
 
@@ -72,24 +72,11 @@ public class PrintTextView extends TextView {
             return;
         }
         //加载音频资源
-        if (mAudioSrc != 0&&mSoundId==-1) {
+        if (mAudioSrc != 0 && mSoundId == -1) {
             mSoundId = mPool.load(mContext, mAudioSrc, 1);
         }
         mPool.autoPause();
-
-        //  第一次进来声音池需要准备
-        if (!isLoadComplete[0]) {
-            mPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-                @Override
-                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                    isLoadComplete[0] = true;//加载完成
-                    postPrintTask(textString, printDelay, audioEnable);
-                    mPool.setOnLoadCompleteListener(null);
-                }
-            });
-        } else {
-            postPrintTask(textString, printDelay, audioEnable);
-        }
+        postPrintTask(textString, printDelay, audioEnable);
 
     }
 
@@ -122,12 +109,11 @@ public class PrintTextView extends TextView {
         stopPrintTask();
         mPool.autoPause();
         mPool.release();
-        mSoundId=-1;
+        mSoundId = -1;
     }
 
     /**
      * 初始化
-     *
      */
     private void init() {
         mPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
@@ -180,6 +166,17 @@ public class PrintTextView extends TextView {
                 @Override
                 public void run() {
                     if (getText().toString().length() < mShowTextString.length()) {
+                        if (mAudioEnable) {
+                            if (!isLoadComplete[0]) {
+                                mPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                                    @Override
+                                    public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                                        isLoadComplete[0] = true;//加载完成
+                                        mPool.setOnLoadCompleteListener(null);
+                                    }
+                                });
+                            }
+                        }
                         //是否开启音效
                         if (mAudioEnable && mAudioSrc != 0) {
                             playAudio();

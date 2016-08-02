@@ -7,6 +7,7 @@ import android.view.Window;
 
 import com.armxyitao.eyepetizer.R;
 import com.armxyitao.eyepetizer.constants.IntentValues;
+import com.orhanobut.logger.Logger;
 
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.widget.Settings;
@@ -28,6 +29,7 @@ public class VideoActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_video);
         String url = getIntent().getStringExtra(IntentValues.VIDEO_PLAY_URL);
+        Logger.d(url);
         mSettings = new Settings(this);
         videoView = (IjkVideoView) findViewById(R.id.videoview);
         // init player

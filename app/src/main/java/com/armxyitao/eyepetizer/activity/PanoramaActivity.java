@@ -209,6 +209,7 @@ public class PanoramaActivity extends BaseActivity
     public void onItemClick(int position, List<ItemList> mDatas) {
         Intent intent = new Intent(getApplicationContext(),PanoramaDetailActivity.class);
         intent.putExtra(IntentValues.PANORAMA_DATAS,(ArrayList)mDatas);
+        intent.putExtra(IntentValues.PANORAMA_POSITION,position);
         startActivity(intent);
     }
 }
